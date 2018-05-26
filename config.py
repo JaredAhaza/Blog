@@ -24,7 +24,7 @@ class DevConfig(Config):
 
 class TestConfig(Config):
     """
-    Child Config with test configurations
+    Child Config with test configurations to test database ralationships
     """
     pass
 
