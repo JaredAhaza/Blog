@@ -1,30 +1,21 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import Required, Email, EqualTo
-from wtforms import ValidationError
+from . import auth
+from .. import db
 from ..models import User
-
-class SignUp(FlaskForm):
-    email = StringField('Email', validators=[Required(), Email()])
-    username = StringField('Your username', validators=[Required()])
-    password = PasswordField('Password', validators=[Required(), EqualTo(
-        'password2', message='Make sure password match')])
-    password2 = PasswordField('Confirm Password', validators=[Required()])
-    submit = SubmitField('Sign Up')
-
-    def validate_email(self, data_field):
-        if User.query.filter_by(email=data_field.data).first():
-            raise ValidationError(
-                'Email taken. Check spelling or try another email')
-
-    def validate_username(self, data_field):
-        if User.query.filter_by(username=data_field.data).first():
-            raise ValidationError('Username taken. Try another one')
+from .forms import SignUp, SignIn
+from flask_login import login_required, login_user
+from flask import render_template, redirect, request, url_for, flash
 
 
+@auth.route('/register', methods=["GET", "POST"])
+def register():
+    sign_up = SignUp()
 
-class SignIn(FlaskForm):
-    email = StringField('Email Address', validators=[Required(), Email()])
-    password = PasswordField('Password', validators=[Required()])
-    remember = BooleanField('Remember me')
-    submit = SubmitField('Sign In')
+    if sign_up.validate_on_submit():
+        user = User(email=sign_up.email.data,
+                    username=sign_up.username.data,
+                    password=sign_up.password.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('auth.login'))
+    title = "New Account"
+    return render_template('auth/register.html',sign_up=sign_up,title=title)
