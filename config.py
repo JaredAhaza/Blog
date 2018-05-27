@@ -8,7 +8,7 @@ class Config:
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'posgresql+psycopg2://neorendo:postgres@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'posgresql+psycopg2://neorendo:12345@localhost/blog'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
 class ProdConfig(Config):
