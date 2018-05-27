@@ -7,7 +7,7 @@ from .. import db
 
 @main.route('/blog', methods=['GET', 'POST'])
 def blog():
-    test = 'What does minimalism mean for you?'
+    test = 'What do you think of aesthists?'
     blog_form = BlogForm()
     if blog_form.validate_on_submit():
         p_body = blog_form.p_body.data
@@ -17,7 +17,7 @@ def blog():
         new_post = Blog(p_body=p_body,p_author=p_author,category=category,p_url=p_url)
         db.session.add(new_post)
         db.session.commit()
-        return redirect(url_for('main.gallery'))
+        return redirect(url_for('main.index'))
     return render_template('blog.html', test=test, blog_form=blog_form)
 
 @main.route('/comments/<int:id>', methods=['GET', 'POST'])
@@ -33,3 +33,11 @@ def comments(id):
         return redirect(url_for('main.comments', id=blog.id))
     return render_template('comments.html',blog=blog,comments=comments,comment_form=comment_form)
 
+
+@main.route('/delete/<int:id>')
+@login_required
+def delete(id):
+    del_comment = Comments.query.get(id)
+    db.session.delete(del_comment)
+    db.session.commit()
+    return redirect(url_for('main.index'))
