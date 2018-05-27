@@ -19,3 +19,16 @@ def register():
         return redirect(url_for('auth.login'))
     title = "New Account"
     return render_template('auth/register.html',sign_up=sign_up,title=title)
+
+
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    login_test = 'Sign In route working!'
+    sign_in = SignIn()
+    if sign_in.validate_on_submit():
+        user = User.query.filter_by(email=sign_in.email.data).first()
+        if user is not None and user.verify_password(sign_in.password.data):
+            login_user(user, sign_in.remember.data)
+            return redirect(request.args.get('next') or url_for('main.index'))
+
+    return render_template('auth/login.html',login_test=login_test,sign_in=sign_in)
