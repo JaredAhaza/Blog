@@ -32,3 +32,9 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
 
     return render_template('auth/login.html',login_test=login_test,sign_in=sign_in)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    flash('You have been successfully logged out')
+    return redirect(url_for('main.index'))
