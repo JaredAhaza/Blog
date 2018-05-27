@@ -9,3 +9,7 @@ class BlogForm(FlaskForm):
     ('artchitecture', 'artchitecture')],validators=[Required()])
     p_url = TextAreaField('Enter image url', validators=[Required()])
     submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    comment = TextAreaField('Comment', validators=[Required()])
+    submit = SubmitField('Submit')
