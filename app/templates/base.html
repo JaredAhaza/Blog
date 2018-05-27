@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <title>Welcome</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Lobster|Sacramento|Open+Sans|Quicksand');
+    body {
+      background: #000000;
+      color: #fff;
+    }
+    h1,h4{
+      /*font-family: 'Lobster', cursive;*/
+      font-family: 'Julius Sans One', sans-serif;
+      /*font-family: 'Sacramento', cursive;*/
+      /*font-family: 'Quicksand', sans-serif;*/
+    }
+    * {
+      /*font-family: 'Open Sans', sans-serif;*/
+        font-family: 'Quicksand', sans-serif;
+    }
+    hr{
+      background: #fff;
+    }
+    .carousel .item {
+      height: 300px;
+    }
+    .item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-height: 300px;
+    }
+    /*Flip styling for our landing page*/
+    #f1_container {
+      z-index: 1;
+    }
+    #f1_container {
+      perspective: 1000;
+    }
+    #f1_card {
+      transform-style: preserve-3d;
+      transition: all 0.5s linear;
+    }
+    #f1_container:hover #f1_card {
+      transform: rotateY(180deg);
+      box-shadow: 2px 2px 2px #e6c300;
+    }
+    .face {
+      /*position: absolute;
+      width: 100%;
+      height: 100%;*/
+      backface-visibility: hidden;
+    }
+    .face.back {
+      display: block;
+      transform: rotateY(180deg);
+      box-sizing: border-box;
+      padding: 5px;
+      color: white;
+      text-align: center;
+      background-color: #000;
+    }
+    /*Main nav*/
+    .nav-link1{
+      color: #fff;
+    }
+    .nav-link1:hover{
+      color: #fff;
+    }
+    a{
+      color: #e6c300;
+    }
+    /*Post nav*/
+    .nav-link{
+      color: #fff;
+      transition: all .3s ease-in-out;
+    }
+    .nav-link:hover{
+      color: #fff;
+      font-weight: bolder;
+      transform: scale(1.3);
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+    }
+  </style>
+
+</head>
+
+<body>
+  {% block navbar %} {% include 'navbar.html' %} {% endblock %} {% block content %} {% endblock %}
+</body>
+
+</html>
+© 2018 Git
