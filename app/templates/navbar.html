@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background: #000;">
-    <a class="navbar-brand" href="/">TheMin</a>
+    <a class="navbar-brand" href="/">The Quotes</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link1" href="/gallery">Gallery</a>
+          <a class="nav-link1" href="/gallery">Quotes</a>
         </li>
       </ul>
       <div class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a href="{{url_for('main.gallery', uname=current_user.username)}}" class="nav-link1">Profile</a>
+          <a href="{{url_for('main.quotes', uname=current_user.username)}}" class="nav-link1">Profile</a>
         </li>
         <li class="nav-item">
           <a href="{{url_for('auth.logout')}}" class="nav-link1">Sign Out</a>

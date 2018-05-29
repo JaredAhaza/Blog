@@ -20,7 +20,6 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    photos = db.relationship('PhotoProfile', backref='user', lazy="dynamic")
     blog = db.relationship('Blog', backref='user', lazy='dynamic')
     comment = db.relationship('Comments', backref='user', lazy='dynamic')
 
@@ -56,16 +55,14 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     p_body = db.Column(db.String)
     p_author = db.Column(db.String)
-    p_url = db.Column(db.String())
     category = db.Column(db.String(255))
     users_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     all_blogs = []
 
-    def __init__(self,p_body,p_author,p_url,category):
+    def __init__(self,p_body,p_author,category):
         self.p_body = p_body
         self.p_author = p_author
-        self.p_url = p_url
         self.category = category
 
     def save_blogs(self):

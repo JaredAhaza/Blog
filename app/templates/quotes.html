@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% import 'macros.html' as macro %} {% block content %}
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#All" role="tab">All</a>
+  </li>
+  <li class="nav-item tab">
+    <a class="nav-link" data-toggle="tab" href="#People" role="tab">People</a>
+  </li>
+  <li class="nav-item tab">
+    <a class="nav-link" data-toggle="tab" href="#Nature" role="tab">Nature</a>
+  </li>
+</ul>
+<div class="container-fluid mt-2">
+  <p>Post a quote here <a href="/blog">here</a>.</p>
+</div>
+<div class="tab-content">
+  <div id="All" class="tab-pane">
+    <div class="container">
+      <div class="row">
+        {{macro.displayBloglist(all)}}
+      </div>
+    </div>
+  </div>
+  <div id="People" class="tab-pane">
+    <div class="container">
+      <div class="row">
+        {{macro.displayBloglist(people)}}
+      </div>
+    </div>
+  </div>
+  <div id="Nature" class="tab-pane">
+    <div class="container">
+      <div class="row">
+        {{macro.displayBloglist(nature)}}
+      </div>
+    </div>
+  </div>
+{% endblock %}

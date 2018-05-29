@@ -5,6 +5,21 @@ from .forms import CommentForm, BlogForm
 from flask_login import login_required, current_user
 from .. import db
 
+
+@main.route('/')
+def index():
+    test = 'Working!'
+    return render_template('index.html', test=test)
+
+@main.route('/quotes')
+def quotes():
+    all = Blog.query.all()
+    people = Blog.query.filter_by(category='people').all()
+    nature = Blog.query.filter_by(category='nature').all()
+    test = 'Working'
+    return render_template('quotes.html',all=all,test=test,people=people,nature=nature)
+
+
 @main.route('/blog', methods=['GET', 'POST'])
 def blog():
     test = 'What do you think of aesthists?'
@@ -13,8 +28,7 @@ def blog():
         p_body = blog_form.p_body.data
         p_author = blog_form.p_author.data
         category = blog_form.category.data
-        p_url = blog_form.p_url.data
-        new_post = Blog(p_body=p_body,p_author=p_author,category=category,p_url=p_url)
+        new_post = Blog(p_body=p_body,p_author=p_author,category=category)
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for('main.index'))
